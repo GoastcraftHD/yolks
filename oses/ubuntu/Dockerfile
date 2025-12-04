@@ -7,10 +7,6 @@ LABEL       org.opencontainers.image.licenses=MIT
 
 ENV         DEBIAN_FRONTEND=noninteractive
 
-## Add container user
-RUN         useradd -m -d /home/container -s /bin/bash container
-ENV         USER=container HOME=/home/container
-
 ## Update base packages
 RUN         apt update \
             && apt upgrade -y
