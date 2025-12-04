@@ -7,6 +7,11 @@ LABEL       org.opencontainers.image.licenses=MIT
 
 ENV         DEBIAN_FRONTEND=noninteractive
 
+## Add container user
+RUN         useradd -m -d /home/container -s /bin/bash container \
+            && apt update && apt install -y sudo \
+            && echo "container ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
 ## Update base packages
 RUN         apt update \
             && apt upgrade -y
