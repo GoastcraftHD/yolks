@@ -12,6 +12,8 @@ RUN         useradd -m -d /home/container -s /bin/bash container \
             && apt update && apt install -y sudo \
             && echo "container ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
+ENV         USER=container HOME=/home/container
+
 ## Update base packages
 RUN         apt update \
             && apt upgrade -y
