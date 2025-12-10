@@ -17,6 +17,8 @@ if [ -z "$RUNNER_TOKEN" ]; then
     exit 1
 fi
 
+sudo ./bin/installdependencies.sh
+
 RUNNER_NAME=${RUNNER_NAME:-$(hostname)}
 RUNNER_LABELS=${RUNNER_LABELS:-"self-hosted,Linux,X64"}
 
