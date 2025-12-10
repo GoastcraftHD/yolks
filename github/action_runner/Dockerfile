@@ -16,6 +16,9 @@ RUN apt-get update && apt-get install -y \
 RUN useradd -m -s /bin/bash runner && \
     echo "runner ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
+RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-18 180 \
+    && update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-18 180
+
 # Switch to runner user
 USER runner
 WORKDIR /home/runner
