@@ -22,7 +22,8 @@ RUN         apt install -y gcc g++ libgcc1 libc++-dev gdb libc6 git wget curl ta
                 libfluidsynth-dev libmariadb-dev libicu-dev libssl3 libduktape207 libjsoncpp-dev libleveldb1d libncurses6 libncursesw6 tini gzip make clang libc++abi-dev lld llvm clang-tidy
 
 ## Config
-RUN			update-alternatives --install /usr/bin/clang clang /usr/bin/clang-18 180
+RUN			update-alternatives --install /usr/bin/clang clang /usr/bin/clang-18 180 \
+			&& update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-18 180
 
 ## Configure locale
 RUN         update-locale lang=en_US.UTF-8 \
