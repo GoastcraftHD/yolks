@@ -17,6 +17,9 @@ if [ -z "$RUNNER_TOKEN" ]; then
     exit 1
 fi
 
+python3 -m venv .venv 
+source .venv/bin/activate
+
 sudo ./bin/installdependencies.sh
 
 RUNNER_NAME=${RUNNER_NAME:-$(hostname)}
