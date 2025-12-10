@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
                 libfontconfig icu-devtools libunwind8 sqlite3 libsqlite3-dev libzip4 locales ffmpeg apt-transport-https init-system-helpers \
                 libcurl3-gnutls liblua5.1-0 libluajit-5.1-2 libsqlite3-0 bzip2 zlib1g libevent-dev libmariadb-dev-compat libmariadb-dev libssl-dev \
                 libfluidsynth-dev libmariadb-dev libicu-dev libssl3 libduktape207 libjsoncpp-dev libleveldb1d libncurses6 libncursesw6 tini gzip make \
-				clang libc++abi-dev lld llvm clang-tidy curl jq git sudo gzip make clang libc++abi-dev lld llvm clang-tidy \
+				clang libc++abi-dev lld llvm clang-tidy curl jq git sudo gzip make clang libc++abi-dev lld llvm clang-tidy gnupg2 lsb-release \
     && rm -rf /var/lib/apt/lists/*
 
 # Create a user for the runner
