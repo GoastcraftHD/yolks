@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
                 libcurl3-gnutls liblua5.1-0 libluajit-5.1-2 libsqlite3-0 bzip2 zlib1g libevent-dev libmariadb-dev-compat libmariadb-dev libssl-dev \
                 libfluidsynth-dev libmariadb-dev libicu-dev libssl3 libduktape207 libjsoncpp-dev libleveldb1d libncurses6 libncursesw6 tini gzip make \
 				clang libc++abi-dev lld llvm clang-tidy curl jq git sudo gzip make clang libc++abi-dev lld llvm clang-tidy gnupg2 lsb-release \
-				software-properties-common \
+				software-properties-common python3 python3-venv python3-dev python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
 # Create a user for the runner
