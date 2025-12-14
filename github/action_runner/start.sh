@@ -19,6 +19,7 @@ fi
 
 python3 -m venv .venv 
 source .venv/bin/activate
+python3 -m pip install --upgrade "pip<23.3"
 
 if ! command -v apt-key >/dev/null 2>&1; then
     echo "Installing apt-key compatibility shim..."
