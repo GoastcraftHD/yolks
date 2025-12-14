@@ -23,6 +23,7 @@ RUN useradd -m -s /bin/bash runner && \
     echo "runner ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-21 210 \
+	&& sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-21 210 \
     && update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-21 210
 
 # Switch to runner user
