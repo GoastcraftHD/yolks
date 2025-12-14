@@ -20,6 +20,26 @@ fi
 python3 -m venv .venv 
 source .venv/bin/activate
 
+if ! command -v apt-key >/dev/null 2>&1; then
+    echo "Installing apt-key compatibility shim..."
+
+    sudo tee /usr/local/bin/apt-key >/dev/null <<'EOF'
+#!/bin/bash
+set -e
+
+if [[ "$1" == "add" && "$2" == "-" ]]; then
+    mkdir -p /usr/share/keyrings
+    gpg --dearmor -o /usr/share/keyrings/legacy-apt-keyring.gpg
+    exit 0
+fi
+
+echo "apt-key is deprecated; only 'apt-key add -' is supported by this shim" >&2
+exit 1
+EOF
+
+    sudo chmod +x /usr/local/bin/apt-key
+fi
+
 sudo ./bin/installdependencies.sh
 
 RUNNER_NAME=${RUNNER_NAME:-$(hostname)}
