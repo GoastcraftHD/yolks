@@ -5,13 +5,13 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
-				gcc g++ libgcc1 gdb libc6 git wget curl tar zip unzip binutils xz-utils liblzo2-2 cabextract iproute2 net-tools netcat-openbsd telnet libatomic1 libsdl1.2debian libsdl2-2.0-0 \
+                gcc g++ libgcc1 gdb libc6 git wget curl tar zip unzip binutils xz-utils liblzo2-2 cabextract iproute2 net-tools netcat-openbsd telnet libatomic1 libsdl1.2debian libsdl2-2.0-0 \
                 libfontconfig icu-devtools libunwind8 sqlite3 libsqlite3-dev libzip4 locales ffmpeg apt-transport-https init-system-helpers \
                 libcurl3-gnutls liblua5.1-0 libluajit-5.1-2 libsqlite3-0 bzip2 zlib1g libevent-dev libmariadb-dev-compat libmariadb-dev libssl-dev \
                 libfluidsynth-dev libmariadb-dev libicu-dev libssl3 libduktape207 libjsoncpp-dev libleveldb1d libncurses6 libncursesw6 tini gzip make \
-				llvm curl jq git sudo gzip make gnupg2 lsb-release clang libc++abi-dev lld clang-tidy libc++-dev \
-				software-properties-common python3 python3-venv python3-dev python3-pip \
-	&& rm -rf /var/lib/apt/lists/*
+                llvm curl jq git sudo gzip make gnupg2 lsb-release clang libc++abi-dev lld clang-tidy libc++-dev \
+                software-properties-common python3 python3-venv python3-dev python3-pip \
+    && rm -rf /var/lib/apt/lists/*
 
 # Create a user for the runner
 RUN useradd -m -s /bin/bash runner && \
