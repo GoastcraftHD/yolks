@@ -35,17 +35,6 @@ RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-21 100 && 
 	update-alternatives --install /usr/bin/lld lld /usr/bin/lld-21 100 && \
     update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-21 100 && \
     update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-21 100
-
-RUN echo '#!/bin/bash\n\
-/usr/bin/clang++-21 -stdlib=libc++ "$@"' > /usr/local/bin/clang++-wrapper && \
-    chmod +x /usr/local/bin/clang++-wrapper
-
-RUN echo "Testing <print> header availability..." && \
-    echo '#include <print>\nint main() { std::println("Hello"); }' > /tmp/test.cpp && \
-    clang++ -std=c++23 -stdlib=libc++ -v /tmp/test.cpp -o /tmp/test 2>&1 | tee /tmp/build.log || \
-    (echo "Build failed. Checking installed files:" && \
-     find /usr -name "print" -type f 2>/dev/null && \
-     dpkg -L libc++-21-dev | grep print)
 	 
 # Switch to runner user
 USER runner
