@@ -28,7 +28,7 @@ USER runner
 WORKDIR /home/runner
 
 # Download and extract GitHub Actions runner
-RUN RUNNER_VERSION=$(curl -s https://api.github.com/repos/actions/runner/releases/latest | jq -r '.tag_name[1:]') && \
+RUN RUNNER_VERSION=$(curl -s https://api.github.com/repos/actions/runner/releases/latest | jq -r '.tag_name' | sed 's/^v//') && \
     curl -o actions-runner-linux.tar.gz -L "https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz" && \
     tar xzf actions-runner-linux.tar.gz && \
     rm actions-runner-linux.tar.gz
