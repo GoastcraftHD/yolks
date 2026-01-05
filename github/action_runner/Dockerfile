@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
                 libcurl3-gnutls liblua5.1-0 libluajit-5.1-2 libsqlite3-0 bzip2 zlib1g libevent-dev libmariadb-dev-compat libmariadb-dev libssl-dev \
                 libfluidsynth-dev libmariadb-dev libicu-dev libssl3 libduktape207 libjsoncpp-dev libleveldb1d libncurses6 libncursesw6 tini gzip make \
                 llvm curl jq git sudo gzip make gnupg2 lsb-release libc++abi-dev lld libc++-dev cppcheck \
-                software-properties-common python3 python3-venv python3-dev python3-pip clang clang-tidy \
+                software-properties-common python3 python3-venv python3-dev python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
 # Create a user for the runner
@@ -18,10 +18,22 @@ RUN useradd -m -s /bin/bash runner && \
     echo "runner ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Install Clang-21
-RUN wget https://apt.llvm.org/llvm.sh \
-	&& chmod u+x llvm.sh \
-	&& sudo ./llvm.sh 21 \
-	&& sudo apt install clang-format-21
+RUN wget https://apt.llvm.org/llvm.sh && \
+    chmod u+x llvm.sh && \
+    sudo ./llvm.sh 21 && \
+    sudo apt-get install -y \
+        clang-21 \
+        clang-tidy-21 \
+        clang-format-21 \
+        libc++-21-dev \
+        libc++abi-21-dev \
+        lld-21 && \
+    rm llvm.sh
+
+RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-21 100 && \
+    update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-21 100 && \
+    update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-21 100 && \
+    update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-21 100
 	
 # Switch to runner user
 USER runner
