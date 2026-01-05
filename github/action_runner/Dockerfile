@@ -22,11 +22,7 @@ RUN wget https://apt.llvm.org/llvm.sh \
 	&& chmod u+x llvm.sh \
 	&& sudo ./llvm.sh 21 \
 	&& sudo apt install clang-format-21
-
-RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-21 210 \
-	&& sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-21 210 \
-    && update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-21 210
-
+	
 # Switch to runner user
 USER runner
 WORKDIR /home/runner
